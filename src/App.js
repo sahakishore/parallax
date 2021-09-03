@@ -1,86 +1,61 @@
-import React, {useState, useEffect} from 'react'
-// import './App.css';
+import React, {useState} from 'react'
+import './App.css';
 
+import Position1 from './Components/Positions/Position1';
+import Position2 from './Components/Positions/Position2';
+import Position3 from './Components/Positions/Position3';
+import Position4 from './Components/Positions/Position4';
+import Position5 from './Components/Positions/Position5';
+import Position6 from './Components/Positions/Position6';
+import Position7 from './Components/Positions/Position7';
+import Position8 from './Components/Positions/Position8';
+import Position9 from './Components/Positions/Position9';
 
-import axios from 'axios'
-
-import {Table} from 'react-bootstrap'
-
-//  const baseURL = "https://data.covid19india.org/state_district_wise.json"
- const baseURL = "https://cors-anywhere.herokuapp.com/https://api.covid19india.org/data.json"
-//  const baseURL = "https://jsonplaceholder.typicode.com/posts/1"
 
 const App = () => {
   
-  const [receiveData, setReceiveData] = useState([])
-  const [errors, setErrors] = useState(null)
-
-    const networkCall = async () => {
-      try {
-        const response = await axios.get(baseURL)
-        // const response = await fetch(baseURL)
-        console.log("Full response:", response)
-        const { data, errors } = response
-
-         setReceiveData(data.statewise)
-        
-        // console.log("All States:",Object.entries(data))
-        
-        
-        if (errors) setErrors(errors)
-      } catch (error) {
-        setErrors([error])
-      }
-    }
-
-
-  useEffect(() => {
+  const [clicked1, setClicked1] = useState(false)
+  const [clicked2, setClicked2] = useState(false)
+  const [clicked3, setClicked3] = useState(false)
+  const [clicked4, setClicked4] = useState(false)
   
-    networkCall()
+  // const data = "Kishore"
 
-  },[])
-
-  console.log("received Data:",receiveData)
-
+  
 
   return (
+    
     <>
-      <div className="container mt-5">
-      <div className="main-heading">
-      <h2 className="mb-5"><span className="font-weight-bold">Covid19 Statewise Stats in India</span></h2>
+      
+
+      <div className="container" style={{ backgroundColor: "#051c2c", justifyContent: "center", alignItems: "center", display:"table" }}>
+        
+        <div style={{ backgroundColor: "#051c2c", justifyContent: "center", alignItems: "center", display: 'flex' }}>
+        <button className="button" onClick={()=>setClicked1(true)}>Free spirit</button>
+        <button className="button" onClick={()=>setClicked2(true)}>Achiever</button>
+        <button className="button" onClick={()=>setClicked3(true)}>Caregiver</button>
+        </div>
+        
+          <div className="grid">
+            <div className="row">
+              {/* <div className="cell"><div className="circle"><Circle1 name={data}/></div></div> */}
+            <div className="cell"><div className="circle"><span className="span">Achievement</span><Position1 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+              <div className="cell"><div className="circle"><span className="span">Conservation</span><Position2 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+              <div className="cell"><div className="circle"><span className="span">Caring</span><Position3 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+            </div>
+            <div className="row">
+              <div className="cell"><div className="circle"><span className="span">Freedom</span><Position4 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+              <div className="cell"><div className="circle"><span className="span">Respect</span><Position5 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+              <div className="cell"><div className="circle"><span className="span">Tradition</span><Position6 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+            </div>
+            <div className="row">
+              <div className="cell"><div className="circle"><span className="span">Enjoyment</span><Position7 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+              <div className="cell"><div className="circle"><span className="span">Stability</span><Position8 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+              <div className="cell"><div className="circle"><span className="span">Equality/Justice</span><Position9 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
+            </div>
+          </div>
       </div>
-     
-     <div>
-     {
-        <Table  striped bordered hover responsive >
-          <thead className="thead-dark th">
-            <th>STATE</th>
-            <th>CONFIRMED</th>
-            <th>RECOVERED</th>
-            <th>DEATHS</th>
-            <th>ACTIVE</th>
-          </thead>
-          <tbody>
-            {
-              receiveData.map((items, key) => {
-                return (
-                <tr key={key}>
-                  <td>{items.state}</td>
-                  <td>{items.confirmed}</td>
-                  <td>{items.recovered}</td>
-                  <td>{items.deaths}</td>
-                  <td>{items.active}</td>
-                </tr>
-                )
-              })
-            }
-          </tbody>
-        </Table>
-     }
-       
-     </div>
-      </div>
-    </>
+</>
   )
 }
 
