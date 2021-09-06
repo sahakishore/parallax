@@ -1,15 +1,11 @@
 import React, {useState} from 'react'
 import './App.css';
 
-import Position1 from './Components/Positions/Position1';
-import Position2 from './Components/Positions/Position2';
-import Position3 from './Components/Positions/Position3';
-import Position4 from './Components/Positions/Position4';
-import Position5 from './Components/Positions/Position5';
-import Position6 from './Components/Positions/Position6';
-import Position7 from './Components/Positions/Position7';
-import Position8 from './Components/Positions/Position8';
-import Position9 from './Components/Positions/Position9';
+import Circle1 from './Components/Circles/Circle1';
+import Circle2 from './Components/Circles/Circle2';
+import Circle3 from './Components/Circles/Circle3';
+import Circle4 from './Components/Circles/Circle4';
+
 
 
 const App = () => {
@@ -17,45 +13,102 @@ const App = () => {
   const [clicked1, setClicked1] = useState(false)
   const [clicked2, setClicked2] = useState(false)
   const [clicked3, setClicked3] = useState(false)
-  const [clicked4, setClicked4] = useState(false)
   
-  // const data = "Kishore"
 
+  // const freespirit = [1, 2, 2, 4, 3, 3, 1, 2, 1]
   
+  // const archiever = [4, 2, 1, 1, 3, 4, 3, 2, 2]
+  
+  // const caregiver = [1, 2, 4, 2, 1, 1, 2, 3, 2]
+  
+  const tags = ['Achievement', 'Conservation', 'Caring', 'Freedom', 'Respect', 'Tradition', 'Enjoyment', 'Stability', 'Equality/justice']
+
+
+  const freespirit = [<Circle1/>, <Circle2/>, <Circle2/>, <Circle4/>, <Circle3/>, <Circle3/>, <Circle1/>, <Circle2/>, <Circle1/>]
+  
+  const archiever = [<Circle4/>, <Circle2/>, <Circle1/>, <Circle1/>, <Circle3/>, <Circle4/>, <Circle3/>, <Circle2/>, <Circle2/>]
+  
+  const caregiver = [<Circle1/>, <Circle2/>, <Circle4/>, <Circle2/>, <Circle1/>, <Circle1/>, <Circle2/>, <Circle3/>, <Circle2/>]
+
 
   return (
-    
-    <>
-      
-
-      <div className="container" style={{ backgroundColor: "#051c2c", justifyContent: "center", alignItems: "center", display:"table" }}>
+    <React.Fragment>
+      <div style={{ backgroundColor: "#051c2c", justifyContent: "center", alignItems: "center"}}>
         
         <div style={{ backgroundColor: "#051c2c", justifyContent: "center", alignItems: "center", display: 'flex' }}>
-        <button className="button" onClick={()=>setClicked1(true)}>Free spirit</button>
-        <button className="button" onClick={()=>setClicked2(true)}>Achiever</button>
-        <button className="button" onClick={()=>setClicked3(true)}>Caregiver</button>
+
+          <button className="button" onClick={
+            () => {
+              setClicked1(true)
+              setClicked2(false)
+              setClicked3(false)
+            }}>Free spirit</button>
+          
+          <button className="button" onClick={
+            () =>{
+              setClicked2(true)
+              setClicked1(false)
+              setClicked3(false)
+            }
+          }>Achiever</button>
+
+          <button className="button" onClick={
+            () => {
+              setClicked3(true)
+              setClicked1(false)
+              setClicked2(false)
+            }}>Caregiver</button>
+          
+        </div>
+            
+         <div className="grid-container">
+         {clicked1?(
+           
+          [0,1,2,3,4,5,6,7,8].map((item, index)=>{
+            return (
+             
+              <div className="grid-item" key={index}><div className="circle"><span className="span">{tags[item]}</span>
+                {freespirit[item]}
+              </div></div> 
+            )
+          })
+          ) : ""
+        }
         </div>
         
-          <div className="grid">
-            <div className="row">
-              {/* <div className="cell"><div className="circle"><Circle1 name={data}/></div></div> */}
-            <div className="cell"><div className="circle"><span className="span">Achievement</span><Position1 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-              <div className="cell"><div className="circle"><span className="span">Conservation</span><Position2 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-              <div className="cell"><div className="circle"><span className="span">Caring</span><Position3 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-            </div>
-            <div className="row">
-              <div className="cell"><div className="circle"><span className="span">Freedom</span><Position4 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-              <div className="cell"><div className="circle"><span className="span">Respect</span><Position5 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-              <div className="cell"><div className="circle"><span className="span">Tradition</span><Position6 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-            </div>
-            <div className="row">
-              <div className="cell"><div className="circle"><span className="span">Enjoyment</span><Position7 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-              <div className="cell"><div className="circle"><span className="span">Stability</span><Position8 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-              <div className="cell"><div className="circle"><span className="span">Equality/Justice</span><Position9 clicked1={clicked1} clicked2={clicked2} clicked3={clicked3 }/></div></div>
-            </div>
-          </div>
+
+        <div className="grid-container">
+         {clicked2?(
+           
+          [0,1,2,3,4,5,6,7,8].map((item, index)=>{
+            return (
+             
+              <div className="grid-item" key={index}><div className="circle"><span className="span">{tags[item]}</span>
+                {archiever[item]}
+              </div></div> 
+            )
+          })
+          ) : ""
+        }
+        </div>
+
+
+        <div className="grid-container">
+         {clicked3?(
+           
+          [0,1,2,3,4,5,6,7,8].map((item, index)=>{
+            return (
+             
+              <div className="grid-item" key={index}><div className="circle"><span className="span">{tags[item]}</span>
+                {caregiver[item]}
+              </div></div> 
+            )
+          })
+          ) : ""
+        }
+        </div>
       </div>
-</>
+</React.Fragment>
   )
 }
 
